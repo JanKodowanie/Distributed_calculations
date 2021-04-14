@@ -14,7 +14,7 @@ def main(ip, port):
     QueueManager.register('get_res_queue', callable=lambda:res_queue)
     manager = QueueManager(address=(ip, int(port)), authkey='abcd654'.encode())
     server = manager.get_server()
-    print("Kolejki zostały stworzone i udostępnione")
+    print("Queues created and served..")
     server.serve_forever()
 
 

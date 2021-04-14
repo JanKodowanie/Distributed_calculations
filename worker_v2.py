@@ -44,18 +44,18 @@ if __name__ == '__main__':
     input_queue, res_queue = connect(args.ip, args.port)
 
     while True:
-        print("Czekam na zadania...")
+        print("Waiting for tasks...")
         while True:
             if input_queue.empty():
                 time.sleep(2)
             else:
-                print("Otrzymalem zadania...")
+                print("Tasks received...")
                 break
 
         X = input_queue.get()
         n_tasks = input_queue.get()
         n_proc = args.subprocesses + 1
-        print(f'Liczba podprocesów: {args.subprocesses}')
+        print(f'Subprocesses: {args.subprocesses}')
         tasks_per_subprocess = n_tasks // n_proc
         main_proc_tasks = tasks_per_subprocess + n_tasks % n_proc
 
@@ -87,5 +87,5 @@ if __name__ == '__main__':
             for t in tups:
                 res_queue.put(t)
 
-        print('Koniec obliczeń')
-        print(f'Czas: {time.time() - start_time} // {n_proc} procesow // {n_tasks} zadan')
+        print('Calculations finished')
+        print(f'Time: {time.time() - start_time} sec // {n_proc} processes // {n_tasks} tasks')

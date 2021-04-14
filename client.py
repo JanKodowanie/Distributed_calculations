@@ -68,7 +68,7 @@ if __name__ == '__main__':
         tasks = args.tasks
 
     if len(A[0]) != m:
-        print("Niezgodne wymiary macierzy A i X")
+        print("Wrong dimensions of A and X")
         sys.exit(-1)
 
     # first -- send X and number of tasks
@@ -82,13 +82,13 @@ if __name__ == '__main__':
     res_received = 0
 
     time_slept = 0
-    print("Czekam na wyniki...")
+    print("Awaiting results...")
     while True:
         if res_queue.empty():
             time_slept += 2
             time.sleep(2)
         else:
-            print("Otrzymalem wyniki...")
+            print("Results received...")
             break
             
     while not res_received == tasks:
@@ -98,5 +98,5 @@ if __name__ == '__main__':
             res_received += 1
 
     save_results(B)
-    print(f'Wyniki zapisane do pliku res.dat')
-    print(f'Całkowity czas działania programu: {time.time() - start_time - time_slept} sekund')
+    print(f'Results saved to res.dat')
+    print(f'Total execution time: {time.time() - start_time - time_slept} sec')
